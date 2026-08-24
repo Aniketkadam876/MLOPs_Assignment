@@ -50,7 +50,7 @@ def test_grade_f():
 
 def test_student_pass():
     marks = [80, 75, 90, 85]
-    assert get_result(marks) == "FAIL"
+    assert get_result(marks) == "PASS"
 
 
 def test_student_fail():
