@@ -1,0 +1,37 @@
+name: Student CI-CD Pipeline
+on:                                                        
+  push:
+    branches: [ "main" ]
+jobs:
+  
+test:
+    name: CI - Test Application                            
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          pip install pytest
+      - name: Run Tests
+        run: |
+          pytest                                                            
+
+
+  deploy:         
+    name: CD - Deploy Application
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Deploy Application
+        run: |
+          echo "Application deployed successfully!"
